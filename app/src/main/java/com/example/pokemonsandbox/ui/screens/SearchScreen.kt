@@ -16,37 +16,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.pokemonsandbox.R
+import com.example.pokemonsandbox.models.Pokemon
 
 //
 // Search a pokemon character
 //
 
 @Composable
-fun SearchPokemon(innerPadding: PaddingValues)
+fun SearchScreen()
 {
+    val pokemon =  Pokemon(
+        name="Pikachu",
+        resourceId = R.drawable.ditto,
+        abilities = "limber, imposter"
+    )
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .padding(innerPadding)
     ){
         Image(
-            painter = painterResource(R.drawable.ditto),
-            contentDescription = "Ditto"
+            painter = painterResource(pokemon.resourceId),
+            contentDescription = pokemon.name
         )
 
-        Text(text = "Ditto",
+        Text(text = pokemon.name,
             style = MaterialTheme.typography.displayLarge)
 
         Spacer(modifier = Modifier
             .height(10.dp))
 
-        //HorizontalDivider(Modifier, DividerDefaults.Thickness, DividerDefaults.color)
-
         Text(text = "Abilities:",
             style = MaterialTheme.typography.titleLarge)
 
-        Text("limber, imposter")
+        Text(pokemon.abilities)
     }
 }
